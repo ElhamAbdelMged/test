@@ -1,0 +1,340 @@
+﻿
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+
+@*<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>*@
+<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+
+@*<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>*@
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+
+<style>
+    .invoice-title h2, .invoice-title h3 {
+        display: inline-block;
+    }
+
+    .table > tbody > tr > .no-line {
+        border-top: none;
+    }
+
+    .table > thead > tr > .no-line {
+        border-bottom: none;
+    }
+
+    .table > tbody > tr > .thick-line {
+        border-top: 2px solid;
+    }
+</style>
+
+
+<div class="container">
+    <form >
+        <div class="row">
+            <div class="col-sm-12">
+                @*<div class="invoice-title">
+                    <h2>Invoice</h2><h3 class="pull-right">Order # 12345</h3>
+                </div>*@
+                <hr>
+                <div class="row">
+                    <div class="col-sm-6">
+                        @*<strong> Invoice No </strong>
+                        <br>*@
+                        <div class="form-group">
+                            <label class="col-sm-4 col-form-label">Invoice No</label>
+                            <div class="col-sm-8">
+                                <input class="form-control" placeholder="Invoice No"  name="Invoice_No" id="Invoice_No"/>
+                                <span class="text-danger"></span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-6 text-right">
+                        @*<strong>Invoice Date:</strong>
+                        <br>*@
+                        <div class="form-group">
+
+                            <label class="col-sm-4 col-form-label">Invoice Date</label>
+                            <div class="col-sm-8">
+                                <input class="form-control" placeholder="Invoice Date" type="date" name="date" id="date" />
+                                <span class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-sm-6">
+
+
+                        <div class="form-group">
+                            <label class="col-sm-4 col-form-label">Store: </label>
+                            <div class="col-sm-8">
+                                @Html.DropDownList("StoreID", ViewBag.Stores as SelectList, "Please select", new { @id = "StoreID" , @class = "form-control" })
+                                @* @id = "StoreID",
+            <select asp-items="@(new SelectList(ViewBag.Store,"ID","Name"))" name="StoreID" id="StoreID"
+                class="custom-select mr-sm-2">
+            <option value="">Please Select</option>
+        </select>*@
+                                <span class="text-danger"></span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-6 text-right">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br />
+        <br />
+        <hr />
+        <div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Item: </label>
+                <div class="col-sm-10">
+                    @Html.DropDownList("ItemID", ViewBag.Items as SelectList, "Please select", new { @id = "Item", @class = "form-control" })
+                    @*@id = "ItemID",
+                        <select asp-items="@(new SelectList(ViewBag.Item,"ID","Name"))" name="Item" id="Item"
+                class="custom-select mr-sm-2">
+            <option value="">Please Select</option>
+        </select>*@
+                    <span class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Unit: </label>
+                <div class="col-sm-10">
+                    @Html.DropDownList("UnitID", ViewBag.Units as SelectList, "Please select", new { @id = "Unit", @class = "form-control" })
+                    @*@id = "UnitID" ,
+            <select asp-items="@(new SelectList(ViewBag.Unit,"ID","Name"))" name="Unit" id="Unit"
+                class="custom-select mr-sm-2">
+            <option value="">Please Select</option>
+        </select>*@
+                    <span class="text-danger"></span>
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Price: </label>
+                <div class="col-sm-10">
+                    <input class="form-control" placeholder="Price" name="Price" id="Price" />
+                    <span class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Quantity: </label>
+                <div class="col-sm-10">
+                    <input class="form-control" placeholder="Quantity" name="Quantity" id="Quantity" />
+                    <span class="text-danger"></span>
+                </div>
+            </div>
+            @*<div class="form-group row">
+                <label class="col-sm-2 col-form-label">Totals: </label>
+                <div class="col-sm-10">
+                    <input class="form-control" placeholder="Totals"  name="Totals" id="Totals"/>
+                    <span class="text-danger"></span>
+                </div>
+            </div>*@
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Discount: </label>
+                <div class="col-sm-10">
+                    <input class="form-control" placeholder="Discount" name="Discount" id="Discount" />
+                    <span class="text-danger"></span>
+                </div>
+            </div>
+
+            @*<div class="form-group row">
+                <label class="col-sm-2 col-form-label">Net: </label>
+                <div class="col-sm-10">
+                    <input class="form-control" placeholder="Net" name="Net" id="Net" />
+                    <span class="text-danger"></span>
+                </div>
+            </div>*@
+
+
+
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <button type="button" class="btn btn-primary" onclick="onclickAddItemToInvoice()">Add</button>
+                    @*<button class="btn btn-danger" onclick="">AddFakeData</button>*@
+
+                </div>
+            </div>
+
+
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><strong>Invoice Details</strong></h3>
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="table-responsive" id="ItemsTable" name="ItemsTable">
+                            <table class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <td><strong>Item</strong></td>
+                                        <td><strong>Unit</strong></td>
+                                        <td><strong>Price</strong></td>
+                                        <td><strong>Quantity</strong></td>
+                                        <td><strong>Totals</strong></td>
+                                        <td><strong>Discount</strong></td>
+                                        <td><strong>Net</strong></td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- foreach ($order->lineItems as $line) or some such thing here -->
+                                    <tr>
+                                        <td>
+                                        </td>
+                                        <td>
+                                        </td>
+                                        <td>
+                                        </td>
+                                        <td>
+                                        </td>
+
+
+                                        <td>
+                                        </td>
+                                        <td>
+                                        </td>
+                                        <td>
+                                        </td>
+                                    </tr>
+
+
+
+                                </tbody>
+                            </table>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Taxes: </label>
+            <div class="col-sm-10">
+                <input class="form-control" placeholder="Taxes"  name="Taxes" id="Taxes"/>
+                <span class="text-danger"></span>
+            </div>
+        </div>
+
+
+        <button asp-controller="Home"
+          asp-action="createAllInvoic"
+           type="submit"
+           class="btn btn-primary">
+            create
+        </button>
+
+
+        <a asp-action="delete"
+           asp-controller="home"
+           class="btn btn-danger">Delete</a>
+
+
+
+
+    </form>
+</div>
+
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<script>
+    function onclickAddItemToInvoice() {
+        debugger;
+
+        var Item = document.getElementById('Item');
+        var resultvalueItem = Item.options[Item.selectedIndex].value;
+        var resulttextItem = Item.options[Item.selectedIndex].text;
+
+        var Unit = document.getElementById('Unit');
+        var resultvalueUnit = Unit.options[Unit.selectedIndex].value;
+        var resulttextUnit = Unit.options[Unit.selectedIndex].text;
+
+        var Price = document.getElementById('Price').value;
+        var Quantity = document.getElementById('Quantity').value;
+        var Discount = document.getElementById('Discount').value;
+        //var Net = document.getElementById('Net').value;
+        //var Totals = document.getElementById('Totals').value;
+        var Total = parseFloat(Quantity) * parseFloat(Price);
+        var Net = Total - parseFloat(Discount);
+        var table = document.getElementsByTagName('table')[0];
+        debugger;   
+        $.ajax({
+            url: '/home/CreateDetails',
+            type: 'Get',
+            dataType: 'json',
+            data: { Item: resultvalueItem, Unit: resultvalueUnit, Price: Price, Quantity: Quantity, Discount: Discount, Total: Total, Net: Net},
+            success: function (productsData) {
+                debugger;
+                if (productsData != "NoData") {
+                    debugger;
+                    //  var returnData = "";
+
+                    var newRow = table.insertRow(1);
+
+                    var cel1 = newRow.insertCell(0);
+                    var cel2 = newRow.insertCell(1);
+                    var cel3 = newRow.insertCell(2);
+                    var cel4 = newRow.insertCell(3);
+                    var cel5 = newRow.insertCell(4);
+                    var cel6 = newRow.insertCell(5);
+                    var cel7 = newRow.insertCell(6);
+
+                    cel1.innerHTML = resulttextItem;
+                    cel2.innerHTML = resulttextUnit;
+                    cel3.innerHTML = Price;
+                    cel4.innerHTML = Quantity;
+                    cel5.innerHTML = Total;
+                    cel6.innerHTML = Discount;
+                    cel7.innerHTML = Net;
+                }
+
+                },
+                error: function (request, message) {
+                    debugger;
+                }
+            });
+
+
+
+
+
+
+
+       
+
+    
+
+    }
+</script>

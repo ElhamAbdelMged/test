@@ -1,0 +1,70 @@
+﻿@model IEnumerable<TechnicalTaskInvoice.Models.InvoiceHeader>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h1>Invoices List</h1>
+
+<br />
+
+
+<table class="table table-striped">
+    <thead>
+        <tr class="table-secondary">
+
+            <th scope="col">  Invoice No</th>
+            <th scope="col">Invoice Date </th>
+            <th scope="col"> Total </th>
+            <th scope="col"> Taxes </th>
+            <th scope="col">Net </th>
+            <th scope="col">View </th>
+            <th scope="col">Delete </th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var invoiceHeader in ViewBag.Invoice)
+        {
+            <tr>
+                <td>
+                    @invoiceHeader.Invoice_NO
+                </td>
+
+                <td>
+                    @invoiceHeader.IvoiceDate
+                </td>
+
+                <td>
+                    @invoiceHeader.Total
+                </td>
+
+
+                <td>
+                    @invoiceHeader.Taxes
+                </td>
+
+                <td>
+                    @invoiceHeader.Net
+                </td>
+
+                <td>
+                    <a asp-controller="home"
+                       asp-action="ViewInvoice"
+                       asp-route-id="@invoiceHeader.ID"
+                       class="btn btn-primary">View</a>
+                </td>
+
+                <td>
+                    <a asp-action="delete"
+                       asp-controller="home"
+                       asp-route-id="@invoiceHeader.ID"
+                       class="btn btn-danger">Delete</a>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+
+
+
+</table>
